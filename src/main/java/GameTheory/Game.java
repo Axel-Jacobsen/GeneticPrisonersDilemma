@@ -6,6 +6,21 @@ import java.util.List;
 
 class Game {
 
+	/**
+	 * Game Class
+	 * <p>
+	 * Hold games with strategies s1 and s2, where the rewards for cooperating and defecting are below.
+	 * Different games with different weights should be explored!
+	 * <p>
+	 *
+	 *
+	 * Rewards
+	 * ----------| Cooperate        | Defect
+	 * ----------|------------------|-----------------
+	 * Cooperate | 1                | 0, 2 to defector
+	 * Defect    | 2 to defector, 0 | 0
+	 */
+
 	private int numIters;
 	private Strategy s1;
 	private Strategy s2;
