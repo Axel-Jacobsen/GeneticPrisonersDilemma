@@ -1,5 +1,7 @@
 package GameTheory.Strategies;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class Strategy {
@@ -8,6 +10,11 @@ public abstract class Strategy {
 	private List<Boolean> opponentMoveHistory;
 	private List<Integer> outcomes;
 
+	Strategy () {
+		this.moveHistory = new ArrayList<>();
+		this.opponentMoveHistory = new ArrayList<>();
+		this.outcomes = new ArrayList<>();
+	}
 	/**
 	 * Gives the move of the strategy at that turn; either
 	 * cooperate (true) or don't (false)
@@ -16,29 +23,18 @@ public abstract class Strategy {
 	 */
 	public abstract boolean makeMove();
 
-	/**
-	 * Adds the previous move by the opponent to the strategy
-	 */
-	public abstract void addOpponentMove(boolean opponentPrevMove);
-
-
-	/**
-	 * Adds the previous outcome to the strategy
-	 */
-	public abstract void addOutcome(int outcome);
-
-	/**
-	 * Gives name of strategy
-	 *
-	 * @return name of strategy
-	 */
 	public abstract String getStrategyName();
 
-	/**
-	 * Returns list of outcomes for strategy
-	 *
-	 * @return list of outcomes
-	 */
-	public abstract List<Integer> getOutcomes();
+	public void addOpponentMove(boolean opponentPrevMove) {
+		this.opponentMoveHistory.add(opponentPrevMove);
+	}
+
+	public void addOutcome(int outcome) {
+		this.outcomes.add(outcome);
+	}
+
+	public List<Integer> getOutcomes() {
+		return Collections.unmodifiableList(outcomes);
+	}
 
 }
