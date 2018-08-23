@@ -1,9 +1,5 @@
 package GameTheory.Strategies;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class AlwaysCooperate extends Strategy {
 
 	public AlwaysCooperate() {
@@ -24,6 +20,4 @@ public class AlwaysCooperate extends Strategy {
 	public String getStrategyName() {
 		return "AlwaysCooperate";
 	}
-
 }
-

@@ -10,11 +10,9 @@ class Game {
 
 	/**
 	 * Game Class
-	 * <p>
+	 *
 	 * Hold games with strategies s1 and s2, where the rewards for cooperating and defecting are below.
 	 * Different games with different weights should be explored!
-	 * <p>
-	 *
 	 *
 	 * Rewards
 	 * ----------| Cooperate        | Defect

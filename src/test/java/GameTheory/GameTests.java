@@ -2,11 +2,12 @@ package GameTheory;
 
 import GameTheory.Strategies.AlwaysCooperate;
 import GameTheory.Strategies.AlwaysDefect;
-import GameTheory.Strategies.TitForTat;
 import GameTheory.Strategies.Strategy;
+import GameTheory.Strategies.TitForTat;
+import org.junit.Test;
+
 import java.util.List;
 
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class GameTests {
@@ -73,7 +74,7 @@ public class GameTests {
 		Strategy s1 = new TitForTat();
 		Strategy s2 = new AlwaysDefect();
 
-		Game war = new Game(3, s1, s2);
+		Game war = new Game(100, s1, s2);
 
 		List<Integer> warOutcomes = war.executeGame();
 		assertEquals(0, (int) warOutcomes.get(0));

@@ -9,10 +9,11 @@ public abstract class Strategy {
 	protected List<Boolean> opponentMoveHistory;
 	protected List<Integer> outcomes;
 
-	Strategy () {
+	Strategy() {
 		this.opponentMoveHistory = new ArrayList<>();
 		this.outcomes = new ArrayList<>();
 	}
+
 	/**
 	 * Gives the move of the strategy at that turn; either
 	 * cooperate (true) or don't (false)
