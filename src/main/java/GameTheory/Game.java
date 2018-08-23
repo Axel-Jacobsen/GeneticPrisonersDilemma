@@ -27,6 +27,7 @@ class Game {
 	private Strategy s1;
 	private Strategy s2;
 
+	private final int bothCooperate = 1;
 	private final int bothDefect = 0;
 	private final int successDefect = 2;
 	private final int failureCooperate = 0;
@@ -51,8 +52,10 @@ class Game {
 		int s1Points = s1.getOutcomes().stream().reduce(0, (a, b) -> a + b);
 		int s2Points = s2.getOutcomes().stream().reduce(0, (a, b) -> a + b);
 
+		System.out.println("\n*******************************************");
 		System.out.println("Strategy " + s1.getStrategyName() + " had final outcome of " + s1Points + " points.");
 		System.out.println("Strategy " + s2.getStrategyName() + " had final outcome of " + s2Points + " points.");
+		System.out.println("*******************************************\n");
 
 		return new ArrayList<>(
 				Arrays.asList(s1Points, s2Points)
@@ -60,6 +63,7 @@ class Game {
 	}
 
 	private List<Boolean> battle(Strategy s1, Strategy s2) {
+
 		// Make your moves
 		boolean s1Move = s1.makeMove();
 		boolean s2Move = s2.makeMove();
@@ -70,7 +74,6 @@ class Game {
 
 		// Both cooperate
 		if (s1Move && s2Move) {
-			int bothCooperate = 1;
 			s1.addOutcome(bothCooperate);
 			s2.addOutcome(bothCooperate);
 		}

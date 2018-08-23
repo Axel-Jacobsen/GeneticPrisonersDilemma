@@ -6,8 +6,8 @@ import java.util.List;
 
 public abstract class Strategy {
 
-	private List<Boolean> opponentMoveHistory;
-	private List<Integer> outcomes;
+	protected List<Boolean> opponentMoveHistory;
+	protected List<Integer> outcomes;
 
 	Strategy () {
 		this.opponentMoveHistory = new ArrayList<>();
@@ -28,10 +28,22 @@ public abstract class Strategy {
 	 */
 	public abstract String getStrategyName();
 
-	public void addOpponentMove(boolean opponentPrevMove) {
-		this.opponentMoveHistory.add(opponentPrevMove);
+	/**
+	 * Add the opponent's previous move to this strategy's
+	 * opponent history
+	 *
+	 * @param opponentMove the opponent's previous move
+	 */
+	public void addOpponentMove(boolean opponentMove) {
+		this.opponentMoveHistory.add(opponentMove);
 	}
 
+	/**
+	 * Add the outcome of the battle and add the opponent's
+	 * previous move to this strategy's opponent history
+	 *
+	 * @param outcome the outcome of the battle
+	 */
 	public void addOutcome(int outcome) {
 		this.outcomes.add(outcome);
 	}

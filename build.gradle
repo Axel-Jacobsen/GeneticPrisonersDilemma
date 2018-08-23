@@ -1,7 +1,5 @@
-plugins {
-    id 'java'
-    id 'jacoco'
-}
+apply plugin: 'java'
+apply plugin: 'jacoco'
 
 version '1.0-SNAPSHOT'
 
@@ -19,7 +17,7 @@ dependencies {
 
 test.testLogging {
     exceptionFormat = "full"
-    events "failed", "passed", "skipped", "standardOut", "standardError"
+    events "failed", "passed", "skipped"
 }
 
 jacocoTestReport {
