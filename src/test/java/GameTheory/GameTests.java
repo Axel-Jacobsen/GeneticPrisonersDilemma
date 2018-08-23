@@ -20,8 +20,8 @@ public class GameTests {
 		Game war = new Game(100, s1, s2);
 
 		List<Integer> warOutcomes = war.executeGame();
-		assertEquals(200, (int) warOutcomes.get(1));
-		assertEquals(0, (int) warOutcomes.get(0));
+		assertEquals(-100, (int) warOutcomes.get(0));
+		assertEquals(300, (int) warOutcomes.get(1));
 	}
 
 	@Test
@@ -32,8 +32,8 @@ public class GameTests {
 		Game war = new Game(100, s1, s2);
 
 		List<Integer> warOutcomes = war.executeGame();
-		assertEquals(100, (int) warOutcomes.get(0));
-		assertEquals(100, (int) warOutcomes.get(1));
+		assertEquals(200, (int) warOutcomes.get(0));
+		assertEquals(200, (int) warOutcomes.get(1));
 	}
 
 	@Test
@@ -61,8 +61,8 @@ public class GameTests {
 		Game war = new Game(100, s1, s2);
 
 		List<Integer> warOutcomes = war.executeGame();
-		assertEquals(100, (int) warOutcomes.get(0));
-		assertEquals(100, (int) warOutcomes.get(1));
+		assertEquals(200, (int) warOutcomes.get(0));
+		assertEquals(200, (int) warOutcomes.get(1));
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class GameTests {
 		Game war = new Game(100, s1, s2);
 
 		List<Integer> warOutcomes = war.executeGame();
-		assertEquals(0, (int) warOutcomes.get(0));
-		assertEquals(2, (int) warOutcomes.get(1));
+		assertEquals(-1, (int) warOutcomes.get(0));
+		assertEquals(3, (int) warOutcomes.get(1));
 	}
 }

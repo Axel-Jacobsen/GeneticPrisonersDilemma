@@ -15,20 +15,20 @@ class Game {
 	 * Different games with different weights should be explored!
 	 *
 	 * Rewards
-	 * ----------| Cooperate        | Defect
-	 * ----------|------------------|-----------------
-	 * Cooperate | 1                | 0, 2 to defector
-	 * Defect    | 2 to defector, 0 | 0
+	 * ----------| Cooperate         | Defect
+	 * ----------|-------------------| -----------------
+	 * Cooperate | 2                 | -1, 3 to defector
+	 * Defect    | 3 to defector, -1 | 0
 	 */
 
 	private int numIters;
 	private Strategy s1;
 	private Strategy s2;
 
-	private final int bothCooperate = 1;
+	private final int bothCooperate = 2;
 	private final int bothDefect = 0;
-	private final int successDefect = 2;
-	private final int failureCooperate = 0;
+	private final int successDefect = 3;
+	private final int failureCooperate = -1;
 
 	Game(int numIters, Strategy s1, Strategy s2) {
 
