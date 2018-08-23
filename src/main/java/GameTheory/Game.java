@@ -43,8 +43,9 @@ class Game {
 	}
 
 	List<Integer> executeGame() {
+
 		for (int i = 0; i < numIters; i++) {
-			List<Boolean> battleOutcome = battle(s1, s2);
+			battle(s1, s2);
 		}
 
 		int s1Points = s1.getPoints();
@@ -52,11 +53,6 @@ class Game {
 
 		s1.clearStrategy();
 		s2.clearStrategy();
-
-		System.out.println("\n*******************************************");
-		System.out.println("Strategy " + s1.getStrategyName() + " had final outcome of " + s1Points + " points.");
-		System.out.println("Strategy " + s2.getStrategyName() + " had final outcome of " + s2Points + " points.");
-		System.out.println("*******************************************\n");
 
 		return new ArrayList<>(
 				Arrays.asList(s1Points, s2Points)
