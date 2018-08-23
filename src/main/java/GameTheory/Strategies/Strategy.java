@@ -6,12 +6,10 @@ import java.util.List;
 
 public abstract class Strategy {
 
-	private List<Boolean> moveHistory;
 	private List<Boolean> opponentMoveHistory;
 	private List<Integer> outcomes;
 
 	Strategy () {
-		this.moveHistory = new ArrayList<>();
 		this.opponentMoveHistory = new ArrayList<>();
 		this.outcomes = new ArrayList<>();
 	}
@@ -23,6 +21,11 @@ public abstract class Strategy {
 	 */
 	public abstract boolean makeMove();
 
+	/**
+	 * For ease of keeping track of strategies
+	 *
+	 * @return name of strategy
+	 */
 	public abstract String getStrategyName();
 
 	public void addOpponentMove(boolean opponentPrevMove) {

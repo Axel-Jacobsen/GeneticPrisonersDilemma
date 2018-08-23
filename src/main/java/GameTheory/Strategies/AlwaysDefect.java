@@ -6,10 +6,8 @@ import java.util.List;
 
 public class AlwaysDefect extends Strategy {
 
-	private List<Integer> outcomes;
-
 	public AlwaysDefect() {
-		this.outcomes = new ArrayList<>();
+		super();
 	}
 
 	/**
