@@ -11,7 +11,7 @@ public class Simpleton extends Strategy {
 
 	private boolean prevMove;
 
-	Simpleton() {
+	public Simpleton() {
 		super();
 	}
 
@@ -33,6 +33,6 @@ public class Simpleton extends Strategy {
 
 	@Override
 	public String getStrategyName() {
-		return null;
+		return "Simpleton";
 	}
 }

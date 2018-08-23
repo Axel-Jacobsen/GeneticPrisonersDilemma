@@ -10,7 +10,7 @@ public class Grudger extends Strategy {
 
 	private boolean opponentCheated;
 
-	Grudger() {
+	public Grudger() {
 		super();
 		opponentCheated = false;
 	}
