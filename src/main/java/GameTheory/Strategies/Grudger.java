@@ -2,14 +2,16 @@ package GameTheory.Strategies;
 
 public class Grudger extends Strategy {
 
-	private boolean opponentCheated;
-
 	/**
 	 * Strategy from the great Evolution of Trust (https://ncase.me/trust/)
 	 *
 	 * Player cooperates until the opponent cheats; then they always cheat
 	 */
+
+	private boolean opponentCheated;
+
 	Grudger() {
+		super();
 		opponentCheated = false;
 	}
 
@@ -33,5 +35,11 @@ public class Grudger extends Strategy {
 		if (!opponentCheated && !opponentMove) {
 			opponentCheated = true;
 		}
+	}
+
+	@Override
+	public void clearStrategy() {
+		super.clearStrategy();
+		opponentCheated = false;
 	}
 }

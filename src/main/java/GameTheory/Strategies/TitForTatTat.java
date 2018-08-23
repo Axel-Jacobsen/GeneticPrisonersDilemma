@@ -8,6 +8,7 @@ public class TitForTatTat extends Strategy {
 	 * This strategy (Tit-For-TatTat) will defect if the previous two moves
 	 * of the opponent were defections.
 	 */
+
 	public TitForTatTat() {
 		super();
 	}

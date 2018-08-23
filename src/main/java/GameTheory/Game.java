@@ -47,8 +47,11 @@ class Game {
 			List<Boolean> battleOutcome = battle(s1, s2);
 		}
 
-		int s1Points = s1.getOutcomes().stream().reduce(0, (a, b) -> a + b);
-		int s2Points = s2.getOutcomes().stream().reduce(0, (a, b) -> a + b);
+		int s1Points = s1.getPoints();
+		int s2Points = s2.getPoints();
+
+		s1.clearStrategy();
+		s2.clearStrategy();
 
 		System.out.println("\n*******************************************");
 		System.out.println("Strategy " + s1.getStrategyName() + " had final outcome of " + s1Points + " points.");

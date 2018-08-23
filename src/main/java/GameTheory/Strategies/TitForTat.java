@@ -9,6 +9,7 @@ public class TitForTat extends Strategy {
 	 *
 	 * This requires adding opponent move history after each battle
 	 */
+
 	public TitForTat() {
 		super();
 	}

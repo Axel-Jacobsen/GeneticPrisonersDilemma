@@ -40,6 +40,23 @@ public abstract class Strategy {
 	}
 
 	/**
+	 * Get total points from outcomes
+	 *
+	 * @return sum of outcomes
+	 */
+	public int getPoints() {
+		return this.outcomes.stream().reduce(0, (a, b) -> a + b);
+	}
+
+	/**
+	 * Clears the outcomes and opponentMoveHistory arrays
+	 */
+	public void clearStrategy() {
+		this.outcomes.clear();
+		this.opponentMoveHistory.clear();
+	}
+
+	/**
 	 * Add the outcome of the battle and add the opponent's
 	 * previous move to this strategy's opponent history
 	 *
