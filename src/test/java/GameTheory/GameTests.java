@@ -1,5 +1,8 @@
 package GameTheory;
 
+import GameTheory.Strategies.AlwaysCooperate;
+import GameTheory.Strategies.AlwaysDefect;
+import GameTheory.Strategies.Strategy;
 import org.junit.Test;
 
 import java.util.List;

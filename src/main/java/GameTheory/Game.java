@@ -1,5 +1,7 @@
 package GameTheory;
 
+import GameTheory.Strategies.Strategy;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +27,6 @@ class Game {
 	private Strategy s1;
 	private Strategy s2;
 
-	private final int bothCooperate = 1;
 	private final int bothDefect = 0;
 	private final int successDefect = 2;
 	private final int failureCooperate = 0;
@@ -69,6 +70,7 @@ class Game {
 
 		// Both cooperate
 		if (s1Move && s2Move) {
+			int bothCooperate = 1;
 			s1.addOutcome(bothCooperate);
 			s2.addOutcome(bothCooperate);
 		}

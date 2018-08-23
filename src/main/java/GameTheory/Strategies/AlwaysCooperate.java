@@ -1,4 +1,4 @@
-package GameTheory;
+package GameTheory.Strategies;
 
 import java.util.ArrayList;
 import java.util.Collections;
