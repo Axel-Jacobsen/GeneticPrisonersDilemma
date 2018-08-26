@@ -3,6 +3,9 @@ package GameTheory;
 import GameTheory.Strategies.*;
 import org.junit.Test;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
@@ -90,7 +93,7 @@ public class TournamentTest {
 	}
 
 	@Test
-	public void testGenetics() {
+	public void testGenetics() throws IOException {
 		List<GeneticOneMove> strategies = new ArrayList<>();
 		for (double i = 0.0; i < 1; i += 0.01) {
 			strategies.add(new GeneticOneMove(i));
@@ -98,8 +101,39 @@ public class TournamentTest {
 
 		GeneticTournament t = new GeneticTournament(strategies);
 
-		HashMap<GeneticOneMove, Integer> finals = t.executeGeneticTournamentRounds(1000);
+		HashMap<GeneticOneMove, Integer> finals = t.executeGeneticTournamentRounds(100);
 		ArrayList<Map.Entry<GeneticOneMove, Integer>> res = t.sortEntries(finals.entrySet());
-		res.forEach(s -> System.out.println("Weight: " + s.getKey().getWeight() + "  Points: " + s.getValue()));
+
+		FileWriter fileWriter = new FileWriter("geneticRes.txt");
+		PrintWriter printWriter = new PrintWriter(fileWriter);
+
+		res.forEach(s -> {
+			System.out.println("Weight: " + s.getKey().getWeight() + "  Points: " + s.getValue());
+			printWriter.printf("%f %d\n", s.getKey().getWeight(), s.getValue());
+		});
+
+		printWriter.close();
+	}
+
+	@Test
+	public void staticProbabilityResults() throws IOException {
+		List<Strategy> strategies = new ArrayList<>();
+		for (double i = 0.0; i < 1; i += 0.01) {
+			strategies.add(new GeneticOneMove(i));
+		}
+		Tournament t = new Tournament(strategies);
+
+		HashMap<Strategy, Integer> finals = t.executeTournamentRounds(100);
+		ArrayList<Map.Entry<Strategy, Integer>> res = t.sortEntries(finals.entrySet());
+
+		FileWriter fileWriter = new FileWriter("staticRes.txt");
+		PrintWriter printWriter = new PrintWriter(fileWriter);
+
+		res.forEach(s -> {
+			System.out.println("Weight: " + ((GeneticOneMove)s.getKey()).getWeight() + "  Points: " + s.getValue());
+			printWriter.printf("%f %d\n", ((GeneticOneMove)s.getKey()).getWeight(), s.getValue());
+		});
+
+		printWriter.close();
 	}
 }
