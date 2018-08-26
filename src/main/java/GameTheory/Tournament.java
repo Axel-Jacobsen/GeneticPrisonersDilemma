@@ -2,10 +2,7 @@ package GameTheory;
 
 import GameTheory.Strategies.Strategy;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Tournament {
 
@@ -32,8 +29,6 @@ public class Tournament {
 	public HashMap<Strategy, Integer> executeTournamentRounds(int numRounds) {
 		for (int i = 0; i < numRounds; i++) {
 			addNewPoints(tournamentRound(10));
-//			// Sort the entries
-//			Set<Map.Entry<Strategy, Integer>> entries = this.points.entrySet();
 		}
 		return this.points;
 	}
@@ -73,5 +68,12 @@ public class Tournament {
 			int prevPts = this.points.getOrDefault(s, 0);
 			this.points.put(s, prevPts + newPoints.get(s));
 		}
+	}
+
+	public ArrayList<Map.Entry<Strategy, Integer>> sortEntries(Set<Map.Entry<Strategy, Integer>> entrySet) {
+		ArrayList<Map.Entry<Strategy, Integer>> sortedEntries = new ArrayList<>(entrySet);
+		sortedEntries.sort((e_last, e_now) -> e_now.getValue() - e_last.getValue());
+
+		return sortedEntries;
 	}
 }

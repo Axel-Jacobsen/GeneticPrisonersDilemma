@@ -3,9 +3,7 @@ package GameTheory;
 import GameTheory.Strategies.*;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -47,12 +45,9 @@ public class TournamentTest {
 	public void executeRepeatedTournamentRoundsTest() {
 
 		HashMap<String, Integer> truthMap = new HashMap<>();
-		truthMap.put("AlwaysDefect", 570);
-		truthMap.put("AlwaysCooperate", 700);
-		truthMap.put("Grudger", 790);
-		truthMap.put("Simpleton", 750);
-		truthMap.put("TitForTat", 790);
-		truthMap.put("TitForTatTat", 780);
+		truthMap.put("AlwaysDefect", 930);
+		truthMap.put("AlwaysCooperate", 400);
+		truthMap.put("TitForTat", 580);
 
 		Strategy s1 = new AlwaysCooperate();
 		Strategy s2 = new AlwaysCooperate();
@@ -68,10 +63,42 @@ public class TournamentTest {
 		);
 
 		Tournament t = new Tournament(strategies);
-		HashMap<Strategy, Integer> results = t.executeTournamentRounds(1);
+		HashMap<Strategy, Integer> results = t.executeTournamentRounds(10);
 
 		results.forEach((s, v) ->
-				System.out.println(s.getStrategyName() + ": " + v)
+				assertEquals(truthMap.get(s.getStrategyName()), v)
 		);
+	}
+
+	@Test
+	public void testSortingSet() {
+
+		HashMap<Strategy, Integer> data = new HashMap<>();
+		data.put(new AlwaysCooperate(), 1);
+		data.put(new AlwaysDefect(), 2);
+		data.put(new Grudger(), 3);
+		data.put(new TitForTat(), 4);
+
+		Tournament t = new Tournament(new ArrayList<>());
+		ArrayList<Map.Entry<Strategy, Integer>> entries = t.sortEntries(data.entrySet());
+
+		int i = 4;
+		for (Map.Entry<Strategy, Integer> s : entries) {
+			assertEquals(i, (int) s.getValue());
+			i -= 1;
+		}
+	}
+
+	@Test
+	public void testGenetics() {
+		List<GeneticOneMove> strategies = new ArrayList<>();
+		for (double i = 0.01; i < 1; i += 0.01) {
+			strategies.add(new GeneticOneMove(i));
+		}
+
+		GeneticTournament t = new GeneticTournament(strategies);
+		HashMap<GeneticOneMove, Integer> finals = t.executeGeneticTournamentRounds(1000);
+		ArrayList<Map.Entry<GeneticOneMove, Integer>> res = t.sortEntries(finals.entrySet());
+		res.forEach(s -> System.out.println("Weight: " + s.getKey().getWeight() + "  Points: " + s.getValue()));
 	}
 }
