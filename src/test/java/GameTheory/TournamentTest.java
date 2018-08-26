@@ -87,13 +87,14 @@ public class TournamentTest {
 
 		int i = 4;
 		for (Map.Entry<Strategy, Integer> s : entries) {
-			assertEquals(i, (int) s.getValue());
+			assertEquals(i, (int)s.getValue());
 			i -= 1;
 		}
 	}
 
 	@Test
 	public void testGenetics() throws IOException {
+
 		List<GeneticOneMove> strategies = new ArrayList<>();
 		for (double i = 0.0; i < 1; i += 0.01) {
 			strategies.add(new GeneticOneMove(i));
@@ -117,21 +118,22 @@ public class TournamentTest {
 
 	@Test
 	public void staticProbabilityResults() throws IOException {
+
 		List<Strategy> strategies = new ArrayList<>();
 		for (double i = 0.0; i < 1; i += 0.01) {
 			strategies.add(new GeneticOneMove(i));
 		}
 		Tournament t = new Tournament(strategies);
 
-		HashMap<Strategy, Integer> finals = t.executeTournamentRounds(100);
+		HashMap<Strategy, Integer> finals = t.executeTournamentRounds(1);
 		ArrayList<Map.Entry<Strategy, Integer>> res = t.sortEntries(finals.entrySet());
 
 		FileWriter fileWriter = new FileWriter("staticRes.txt");
 		PrintWriter printWriter = new PrintWriter(fileWriter);
 
 		res.forEach(s -> {
-			System.out.println("Weight: " + ((GeneticOneMove)s.getKey()).getWeight() + "  Points: " + s.getValue());
-			printWriter.printf("%f %d\n", ((GeneticOneMove)s.getKey()).getWeight(), s.getValue());
+			System.out.println("Weight: " + ((GeneticOneMove) s.getKey()).getWeight() + "  Points: " + s.getValue());
+			printWriter.printf("%f %d\n", ((GeneticOneMove) s.getKey()).getWeight(), s.getValue());
 		});
 
 		printWriter.close();

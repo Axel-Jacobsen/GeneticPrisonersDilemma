@@ -21,30 +21,31 @@ class Game {
 	 * Defect    | 3 to defector, -1 | 0
 	 */
 
-	private int numIters;
 	private Strategy s1;
 	private Strategy s2;
 
-	private final int bothCooperate = 2;
-	private final int bothDefect = 0;
-	private final int successDefect = 3;
-	private final int failureCooperate = -1;
+	private static final int bothCooperate = 2;
+	private static final int bothDefect = 0;
+	private static final int successDefect = 3;
+	private static final int failureCooperate = -1;
 
-	Game(int numIters, Strategy s1, Strategy s2) {
-
+	Game(Strategy s1, Strategy s2) {
 		this.s1 = s1;
 		this.s2 = s2;
-
-		if (numIters > 0) {
-			this.numIters = numIters;
-		} else {
-			throw new RuntimeException("number of iterations of a game must be greater than 0");
-		}
 	}
 
-	List<Integer> executeGame() {
+	/**
+	 * Execute 1 game numIterations times
+	 *
+	 * @return a tuple of their scores
+	 */
+	List<Integer> executeGame(int numIterations) {
 
-		for (int i = 0; i < numIters; i++) {
+		if (numIterations < 0) {
+			throw new RuntimeException("number of iterations of a game must be greater than 0");
+		}
+
+		for (int i = 0; i < numIterations; i++) {
 			battle(s1, s2);
 		}
 
@@ -59,6 +60,14 @@ class Game {
 		);
 	}
 
+	/**
+	 * Hold a battle between s1 and s2; this is the classic
+	 * prisoners dilemma cooperate / defect game.
+	 *
+	 * @param s1 first strategy
+	 * @param s2 second strategy
+	 * @return A tuple of moves of s1 and s2
+	 */
 	private List<Boolean> battle(Strategy s1, Strategy s2) {
 
 		// Make your moves
