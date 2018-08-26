@@ -22,31 +22,32 @@ public class GeneticTournament {
 			// Battle!
 			addNewPoints(tournamentRound(10));
 
+			// Sort the entries
+			ArrayList<Map.Entry<GeneticOneMove, Integer>> sortedEntries = sortEntries(this.points.entrySet());
+
+			// Kill the bottom 50%
+			List<Map.Entry<GeneticOneMove, Integer>> merked = sortedEntries.subList(sortedEntries.size() / 2 - 1, sortedEntries.size());
+			merked.forEach(s -> this.points.remove(s.getKey()));
+
 			if (i == numRounds - 1) {
 				save = new HashMap<>(this.points);
-			} else {
-
-				// Sort the entries
-				ArrayList<Map.Entry<GeneticOneMove, Integer>> sortedEntries = sortEntries(this.points.entrySet());
-
-				// Kill the bottom 50%
-				System.out.println("SIZE YOU ---: " + this.points.size());
-				List<Map.Entry<GeneticOneMove, Integer>> merked = sortedEntries.subList(sortedEntries.size() / 2 - 1, sortedEntries.size());
-				merked.forEach(s -> this.points.remove(s.getKey()));
-				System.out.println("SIZE AGAIN YOU ---: " + this.points.size());
-
-				// Mutate, Mate, whatever else
-				HashMap<GeneticOneMove, Integer> weeLittleBabies = new HashMap<>();
-				for (int j = 0; j < (this.points.keySet().size() - 1); j++) {
-					// This horrible line mates one GeneticOneMove to another
-					GeneticOneMove g = ((GeneticOneMove) (this.points.keySet().toArray()[j]))
-							.mate((GeneticOneMove) (this.points.keySet().toArray()[j + 1]));
-					weeLittleBabies.put(g, 0);
-				}
-				this.points.forEach((s, v) -> this.points.put(s, 0));
-				this.points.putAll(weeLittleBabies);
 			}
+
+			// Mutate, Mate, whatever else
+			HashMap<GeneticOneMove, Integer> weeLittleBabies = new HashMap<>();
+			for (int j = 0; j < (this.points.keySet().size() - 1); j++) {
+				// This horrible line mates one GeneticOneMove to another
+				GeneticOneMove g = ((GeneticOneMove) (this.points.keySet().toArray()[j]))
+						.mate((GeneticOneMove) (this.points.keySet().toArray()[j + 1]));
+				weeLittleBabies.put(g, 0);
+			}
+			this.points.forEach((s, v) -> {
+				s.mutate();
+				this.points.put(s, 0);
+			});
+			this.points.putAll(weeLittleBabies);
 		}
+
 		return save;
 	}
 

@@ -92,11 +92,12 @@ public class TournamentTest {
 	@Test
 	public void testGenetics() {
 		List<GeneticOneMove> strategies = new ArrayList<>();
-		for (double i = 0.01; i < 1; i += 0.01) {
+		for (double i = 0.0; i < 1; i += 0.01) {
 			strategies.add(new GeneticOneMove(i));
 		}
 
 		GeneticTournament t = new GeneticTournament(strategies);
+
 		HashMap<GeneticOneMove, Integer> finals = t.executeGeneticTournamentRounds(1000);
 		ArrayList<Map.Entry<GeneticOneMove, Integer>> res = t.sortEntries(finals.entrySet());
 		res.forEach(s -> System.out.println("Weight: " + s.getKey().getWeight() + "  Points: " + s.getValue()));
