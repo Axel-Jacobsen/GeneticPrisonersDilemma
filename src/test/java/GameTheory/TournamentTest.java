@@ -96,24 +96,23 @@ public class TournamentTest {
 	public void testGenetics() throws IOException {
 
 		List<GeneticOneMove> strategies = new ArrayList<>();
-		for (double i = 0.0; i < 1; i += 0.01) {
+		for (double i = 0.5; i < 1; i += 0.005) {
 			strategies.add(new GeneticOneMove(i));
 		}
 
 		GeneticTournament t = new GeneticTournament(strategies);
 
-		HashMap<GeneticOneMove, Integer> finals = t.executeGeneticTournamentRounds(100);
+		HashMap<GeneticOneMove, Integer> finals = t.executeGeneticTournamentRounds(150);
 		ArrayList<Map.Entry<GeneticOneMove, Integer>> res = t.sortEntries(finals.entrySet());
-
-		FileWriter fileWriter = new FileWriter("geneticRes.txt");
-		PrintWriter printWriter = new PrintWriter(fileWriter);
-
-		res.forEach(s -> {
-			System.out.println("Weight: " + s.getKey().getWeight() + "  Points: " + s.getValue());
-			printWriter.printf("%f %d\n", s.getKey().getWeight(), s.getValue());
-		});
-
-		printWriter.close();
+//
+//		FileWriter fileWriter = new FileWriter("geneticRes.txt");
+//		PrintWriter printWriter = new PrintWriter(fileWriter);
+//
+//		res.forEach(s -> {
+//			printWriter.printf("%f %d\n", s.getKey().getWeight(), s.getValue());
+//		});
+//
+//		printWriter.close();
 	}
 
 	@Test

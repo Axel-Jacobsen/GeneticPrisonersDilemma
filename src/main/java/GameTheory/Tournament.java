@@ -1,5 +1,6 @@
 package GameTheory;
 
+import GameTheory.Strategies.GeneticOneMove;
 import GameTheory.Strategies.Strategy;
 
 import java.util.*;
@@ -14,13 +15,12 @@ public class Tournament {
 	 * and do other wacky stuff.
 	 */
 
-	private List<Strategy> strategies;
 	private HashMap<Strategy, Integer> points;
 
 
 	Tournament (List<Strategy> strategies) {
-		this.strategies = strategies;
 		this.points = new HashMap<>();
+		strategies.forEach(s -> this.points.put(s, 0));
 	}
 
 	/**
@@ -41,18 +41,21 @@ public class Tournament {
 	 * @return hashmap of each strategy to the number of points it won during the tournament
 	 */
 	private HashMap<Strategy, Integer> tournamentRound(int n) {
-		HashMap<Strategy, Integer> tournamentPoints = new HashMap<>();
-		for (int i = 0; i < strategies.size(); i++) {
-			for (int j = i + 1; j < strategies.size(); j++) {
 
-				Game g = new Game(strategies.get(i), strategies.get(j));
+		HashMap<Strategy, Integer> tournamentPoints = new HashMap<>();
+		Object[] strategies = this.points.keySet().toArray();
+
+		for (int i = 0; i < this.points.keySet().size(); i++) {
+			for (int j = i + 1; j < strategies.length; j++) {
+
+				Game g = new Game((Strategy) strategies[i], (Strategy) strategies[j]);
 				List<Integer> gameOutcome = g.executeGame(n);
 
-				int s1PrevPts = tournamentPoints.getOrDefault(strategies.get(i), 0);
-				int s2PrevPts = tournamentPoints.getOrDefault(strategies.get(j), 0);
+				int s1PrevPts = tournamentPoints.getOrDefault(strategies[i], 0);
+				int s2PrevPts = tournamentPoints.getOrDefault(strategies[j], 0);
 
-				tournamentPoints.put(strategies.get(i), s1PrevPts + gameOutcome.get(0));
-				tournamentPoints.put(strategies.get(j), s2PrevPts + gameOutcome.get(1));
+				tournamentPoints.put((Strategy) strategies[i], s1PrevPts + gameOutcome.get(0));
+				tournamentPoints.put((Strategy) strategies[j], s2PrevPts + gameOutcome.get(1));
 			}
 		}
 		return tournamentPoints;
