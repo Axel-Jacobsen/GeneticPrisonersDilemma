@@ -1,8 +1,8 @@
-# GeneticPrisonersDilemma
+# Genetic Prisoner's Dilemma
 
 ![Genetic Algorithm running for a basic prisoner's dilemma](line.gif)
 
-_Genetic algorithm running for a basic Prisoner's Dilemma_
+_Genetic algorithm running for a basic Prisoner's Dilemma. This shows the initial population narrowing to their optimum._
 
 ## Why?
 

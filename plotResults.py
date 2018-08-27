@@ -53,6 +53,6 @@ if __name__ == '__main__':
 
     plt.xlim(-0.1, 1.1)
     print(len(ys))
-    anim = FuncAnimation(fig, update, frames=np.arange(0, len(ys)), interval=40)
+    anim = FuncAnimation(fig, update, frames=np.arange(0, len(ys)), interval=40, repeat_delay=0)
     print("doneeroo")
     anim.save('line.gif', dpi=150, writer='imagemagick')
