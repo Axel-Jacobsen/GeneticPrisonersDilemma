@@ -2,9 +2,6 @@ package GameTheory;
 
 import GameTheory.Strategies.GeneticOneMove;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 public class GeneticTournament {
@@ -27,10 +24,8 @@ public class GeneticTournament {
 	 * @param numRounds number of rounds of tournaments
 	 * @return Map of strategies to the scores that they achieved in the final round
 	 */
-	public HashMap<GeneticOneMove, Integer> executeGeneticTournamentRounds(int numRounds) throws IOException  {
+	public HashMap<GeneticOneMove, Integer> executeGeneticTournamentRounds(int numRounds) {
 		HashMap<GeneticOneMove, Integer> save = new HashMap<>();
-		FileWriter fileWriter = new FileWriter("geneticRes.txt");
-		PrintWriter printWriter = new PrintWriter(fileWriter);
 
 		for (int i = 0; i < numRounds; i++) {
 
@@ -41,7 +36,6 @@ public class GeneticTournament {
 			ArrayList<Map.Entry<GeneticOneMove, Integer>> sortedEntries = sortEntries(this.points.entrySet());
 
 			// Kill the bottom 50%
-
 			List<Map.Entry<GeneticOneMove, Integer>> merked = sortedEntries.subList(sortedEntries.size() / 2, sortedEntries.size());
 			merked.forEach(s -> this.points.remove(s.getKey()));
 
@@ -49,41 +43,23 @@ public class GeneticTournament {
 				save = new HashMap<>(this.points);
 			}
 
-			this.points.forEach((s, v) ->
-				printWriter.printf("%f %d\n", s.getWeight(), v)
-			);
-
 			// Mutate, Mate, whatever else
 			HashMap<GeneticOneMove, Integer> weeLittleBabies = new HashMap<>();
-//
-//			for (int j = 0; j < (this.points.keySet().size() - 1); j++) {
-//				// This horrible line mates one GeneticOneMove to another
-//				GeneticOneMove g = ((GeneticOneMove) (this.points.keySet().toArray()[j]))
-//						.mate((GeneticOneMove) (this.points.keySet().toArray()[j + 1]));
-////				GeneticOneMove h = ((GeneticOneMove) (this.points.keySet().toArray()[j])).mutateNew();
-//
-//				weeLittleBabies.put(g, 0);
-//			}
-//			GeneticOneMove g = ((GeneticOneMove) (this.points.keySet().toArray()[0]))
-//					.mate((GeneticOneMove) (this.points.keySet().toArray()[this.points.keySet().size() - 1]));
-//			weeLittleBabies.put(g, 0);
 
 			for (int j = 0; j < (this.points.keySet().size()); j++) {
-				// This horrible line mates one GeneticOneMove to another
+				// This horrible line mutates new GeneticOneMove strategies
 				GeneticOneMove h = ((GeneticOneMove) (this.points.keySet().toArray()[j])).mutateNew();
 				weeLittleBabies.put(h, 0);
 			}
 
+			// Modify remaining strategies small amounts and reset points
 			this.points.forEach((s, v) -> {
 				s.mutate();
 				this.points.put(s, 0);
 			});
 
 			this.points.putAll(weeLittleBabies);
-
-			printWriter.printf("-------\n");
 		}
-		printWriter.close();
 
 		return save;
 	}

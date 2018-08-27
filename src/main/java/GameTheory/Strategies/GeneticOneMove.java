@@ -22,7 +22,7 @@ public class GeneticOneMove extends Strategy {
 	 */
 	public void mutate() {
 		boolean pm = generator.nextDouble() > 0.5;
-		double val = generator.nextDouble() * 0.012;
+		double val = generator.nextDouble() * 0.002;
 		weight = pm && weight + val < 1 ? weight + val : weight - val > 0 ? weight - val : weight;
 	}
 
@@ -31,7 +31,7 @@ public class GeneticOneMove extends Strategy {
 	 */
 	public GeneticOneMove mutateNew() {
 		boolean pm = generator.nextDouble() > 0.5;
-		double val = generator.nextDouble() * 0.0105;
+		double val = generator.nextDouble() * 0.005;
 		double w = pm && (weight + val < 1) ? weight + val : weight - val > 0 ? weight - val : weight;
 		return new GeneticOneMove(w);
 	}

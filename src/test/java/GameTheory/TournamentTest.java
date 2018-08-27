@@ -102,17 +102,17 @@ public class TournamentTest {
 
 		GeneticTournament t = new GeneticTournament(strategies);
 
-		HashMap<GeneticOneMove, Integer> finals = t.executeGeneticTournamentRounds(150);
+		HashMap<GeneticOneMove, Integer> finals = t.executeGeneticTournamentRounds(1000);
 		ArrayList<Map.Entry<GeneticOneMove, Integer>> res = t.sortEntries(finals.entrySet());
-//
-//		FileWriter fileWriter = new FileWriter("geneticRes.txt");
-//		PrintWriter printWriter = new PrintWriter(fileWriter);
-//
-//		res.forEach(s -> {
-//			printWriter.printf("%f %d\n", s.getKey().getWeight(), s.getValue());
-//		});
-//
-//		printWriter.close();
+
+		FileWriter fileWriter = new FileWriter("geneticRes.txt");
+		PrintWriter printWriter = new PrintWriter(fileWriter);
+
+		res.forEach(s -> {
+			printWriter.printf("%f %d\n", s.getKey().getWeight(), s.getValue());
+		});
+
+		printWriter.close();
 	}
 
 	@Test
