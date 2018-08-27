@@ -55,4 +55,4 @@ if __name__ == '__main__':
     print(len(ys))
     anim = FuncAnimation(fig, update, frames=np.arange(0, len(ys)), interval=40, repeat_delay=0)
     print("doneeroo")
-    anim.save('line.gif', dpi=150, writer='imagemagick')
+    anim.save('line.gif', dpi=120, writer='imagemagick')
