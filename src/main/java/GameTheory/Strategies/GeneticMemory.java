@@ -1,61 +1,33 @@
 package GameTheory.Strategies;
 
-import java.util.Random;
-
-public class GeneticMemory extends Strategy {
-
-	private double weight;
-	private boolean previousOpponentMove;
-	private Random generator;
+public class GeneticMemory extends GeneticStrategy {
 
 	public GeneticMemory(double n) {
-		weight = n;
-		generator = new Random();
+		super(n);
 	}
 
+	/**
+	 * Make a move probabilistically; i.e. generate a random number
+	 * between 0 and 1, and if it is less than this.weight, 
+	 * and if opponentPrevMove is true, then return true
+	 * 
+	 * @return defect / cooperate depending on the conditions above
+	 */
+	@Override
+	public boolean makeMove() {
+		boolean opponentPrevMove = this.opponentMoveHistory.size() > 0 ?
+			this.opponentMoveHistory.get(this.opponentMoveHistory.size() - 1) : true;
+		return opponentPrevMove && this.generator.nextDouble() < this.weight;
+	}
 
 	/**
 	 * Mutate this genetic strategy by modifying it's weight
 	 */
-	public void mutate() {
-		boolean pm = generator.nextDouble() > 0.5;
-		double val = generator.nextDouble() * 0.002;
-		weight = pm && weight + val < 1 ? weight + val : weight - val > 0 ? weight - val : weight;
-	}
-
-	/**
-	 * Mutate this genetic strategy by modifying it's weight
-	 */
+	@Override
 	public GeneticMemory mutateNew() {
 		boolean pm = generator.nextDouble() > 0.5;
 		double val = generator.nextDouble() * 0.005;
 		double w = pm && (weight + val < 1) ? weight + val : weight - val > 0 ? weight - val : weight;
 		return new GeneticMemory(w);
-	}
-
-	/**
-	 * Create a new GeneticMemory by mating this strategy to strategy s by taking
-	 * the average of their weights
-	 *
-	 * @param s the second strategy that you would like to mate with
-	 * @return new GeneticMemory strategy that is the offspring of this and s
-	 */
-	public GeneticMemory mate(GeneticMemory s) {
-		return new GeneticMemory((this.weight + s.getWeight()) / 2);
-	}
-
-	public double getWeight() {
-		return weight;
-	}
-
-
-	@Override
-	public boolean makeMove() {
-		return previousOpponentMove && this.weight < generator.nextDouble();
-	}
-
-	@Override
-	public String getStrategyName() {
-		return null;
 	}
 }

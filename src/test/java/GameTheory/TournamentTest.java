@@ -95,15 +95,15 @@ public class TournamentTest {
 	@Test
 	public void testGenetics() throws IOException {
 
-		List<GeneticOneMove> strategies = new ArrayList<>();
+		List<GeneticStrategy> strategies = new ArrayList<>();
 		for (double i = 0.5; i < 1; i += 0.005) {
 			strategies.add(new GeneticOneMove(i));
 		}
 
 		GeneticTournament t = new GeneticTournament(strategies);
 
-		HashMap<GeneticOneMove, Integer> finals = t.executeGeneticTournamentRounds(1000);
-		ArrayList<Map.Entry<GeneticOneMove, Integer>> res = t.sortEntries(finals.entrySet());
+		HashMap<GeneticStrategy, Integer> finals = t.executeGeneticTournamentRounds(1000);
+		ArrayList<Map.Entry<GeneticStrategy, Integer>> res = t.sortEntries(finals.entrySet());
 
 		FileWriter fileWriter = new FileWriter("geneticRes.txt");
 		PrintWriter printWriter = new PrintWriter(fileWriter);
@@ -133,6 +133,29 @@ public class TournamentTest {
 		res.forEach(s -> {
 			System.out.println("Weight: " + ((GeneticOneMove) s.getKey()).getWeight() + "  Points: " + s.getValue());
 			printWriter.printf("%f %d\n", ((GeneticOneMove) s.getKey()).getWeight(), s.getValue());
+		});
+
+		printWriter.close();
+	}
+
+	@Test
+	public void testMemoryGenetics() throws IOException {
+
+		List<GeneticStrategy> strategies = new ArrayList<>();
+		for (double i = 0.5; i < 1; i += 0.005) {
+			strategies.add(new GeneticMemory(i));
+		}
+
+		GeneticTournament t = new GeneticTournament(strategies);
+
+		HashMap<GeneticStrategy, Integer> finals = t.executeGeneticTournamentRounds(1000);
+		ArrayList<Map.Entry<GeneticStrategy, Integer>> res = t.sortEntries(finals.entrySet());
+
+		FileWriter fileWriter = new FileWriter("geneticRes.txt");
+		PrintWriter printWriter = new PrintWriter(fileWriter);
+
+		res.forEach(s -> {
+			printWriter.printf("%f %d\n", s.getKey().getWeight(), s.getValue());
 		});
 
 		printWriter.close();
