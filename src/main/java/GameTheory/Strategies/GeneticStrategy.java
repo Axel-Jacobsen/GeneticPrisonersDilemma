@@ -22,7 +22,7 @@ public abstract class GeneticStrategy extends Strategy {
 	 */
 	public void mutate() {
 		boolean pm = generator.nextDouble() > 0.5;
-		double val = generator.nextDouble() * 0.002;
+		double val = generator.nextDouble() * 0.0000001;
 		weight = pm && weight + val < 1 ? weight + val : weight - val > 0 ? weight - val : weight;
 	}
 

@@ -7,16 +7,17 @@ public class GeneticMemory extends GeneticStrategy {
 	}
 
 	/**
-	 * Make a move probabilistically; i.e. generate a random number
-	 * between 0 and 1, and if it is less than this.weight, 
-	 * and if opponentPrevMove is true, then return true
+	 * Make a move probabilistically; i.e. generate a random number between 0 and 1,
+	 * and if it is less than this.weight, and if opponentPrevMove is true, then
+	 * return true
 	 * 
 	 * @return defect / cooperate depending on the conditions above
 	 */
 	@Override
 	public boolean makeMove() {
-		boolean opponentPrevMove = this.opponentMoveHistory.size() > 0 ?
-			this.opponentMoveHistory.get(this.opponentMoveHistory.size() - 1) : true;
+		boolean opponentPrevMove = this.opponentMoveHistory.size() > 0
+				? this.opponentMoveHistory.get(this.opponentMoveHistory.size() - 1)
+				: true;
 		return opponentPrevMove && this.generator.nextDouble() < this.weight;
 	}
 
@@ -26,7 +27,7 @@ public class GeneticMemory extends GeneticStrategy {
 	@Override
 	public GeneticMemory mutateNew() {
 		boolean pm = generator.nextDouble() > 0.5;
-		double val = generator.nextDouble() * 0.005;
+		double val = generator.nextDouble() * 0.0000001;
 		double w = pm && (weight + val < 1) ? weight + val : weight - val > 0 ? weight - val : weight;
 		return new GeneticMemory(w);
 	}

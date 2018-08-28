@@ -3,6 +3,9 @@ package GameTheory;
 import GameTheory.Strategies.GeneticStrategy;
 
 import java.util.*;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 
 public class GeneticTournament {
 
@@ -22,21 +25,30 @@ public class GeneticTournament {
 	 * @param numRounds number of rounds of tournaments
 	 * @return Map of strategies to the scores that they achieved in the final round
 	 */
-	public HashMap<GeneticStrategy, Integer> executeGeneticTournamentRounds(int numRounds) {
+	public HashMap<GeneticStrategy, Integer> executeGeneticTournamentRounds(int numRounds) throws IOException {
 		HashMap<GeneticStrategy, Integer> save = new HashMap<>();
+		FileWriter fileWriter = new FileWriter("geneticRes.txt");
+		PrintWriter printWriter = new PrintWriter(fileWriter);
 
 		for (int i = 0; i < numRounds; i++) {
-
+			System.out.println(i);
 			// Battle!
 			addNewPoints(tournamentRound(100));
 
 			// Sort the entries
 			ArrayList<Map.Entry<GeneticStrategy, Integer>> sortedEntries = sortEntries(this.points.entrySet());
 
+			if (i == 0) {
+				this.points.forEach((s, v) -> printWriter.printf("%f %d\n", s.getWeight(), v));
+				printWriter.printf("-------\n");
+			}
+
 			// Kill the bottom 50%
 			List<Map.Entry<GeneticStrategy, Integer>> merked = sortedEntries.subList(sortedEntries.size() / 2,
 					sortedEntries.size());
 			merked.forEach(s -> this.points.remove(s.getKey()));
+
+			this.points.forEach((s, v) -> printWriter.printf("%f %d\n", s.getWeight(), v));
 
 			if (i == numRounds - 1) {
 				save = new HashMap<>(this.points);
@@ -60,8 +72,11 @@ public class GeneticTournament {
 			});
 
 			this.points.putAll(weeLittleBabies);
-		}
 
+			printWriter.printf("-------\n");
+
+		}
+		printWriter.close();
 		return save;
 	}
 
@@ -113,7 +128,8 @@ public class GeneticTournament {
 	 * @param entrySet Entryset of a map you would like to sort
 	 * @return Array list of Entries sorted by value
 	 */
-	public ArrayList<Map.Entry<GeneticStrategy, Integer>> sortEntries(Set<Map.Entry<GeneticStrategy, Integer>> entrySet) {
+	public ArrayList<Map.Entry<GeneticStrategy, Integer>> sortEntries(
+			Set<Map.Entry<GeneticStrategy, Integer>> entrySet) {
 		ArrayList<Map.Entry<GeneticStrategy, Integer>> sortedEntries = new ArrayList<>(entrySet);
 		sortedEntries.sort((e_last, e_now) -> e_now.getValue() - e_last.getValue());
 
