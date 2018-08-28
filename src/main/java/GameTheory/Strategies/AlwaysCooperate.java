@@ -16,8 +16,4 @@ public class AlwaysCooperate extends Strategy {
 		return true;
 	}
 
-	@Override
-	public String getStrategyName() {
-		return "AlwaysCooperate";
-	}
 }

@@ -16,9 +16,4 @@ public class AlwaysDefect extends Strategy {
 		return false;
 	}
 
-	@Override
-	public String getStrategyName() {
-		return "AlwaysDefect";
-	}
-
 }

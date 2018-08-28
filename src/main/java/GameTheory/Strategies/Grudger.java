@@ -15,19 +15,9 @@ public class Grudger extends Strategy {
 		opponentCheated = false;
 	}
 
-
-	@Override
-	public boolean makeMove() {
-		return !opponentCheated;
-	}
-
-	@Override
-	public String getStrategyName() {
-		return "Grudger";
-	}
-
 	/**
-	 * If the opponent did not
+	 * If the opponent did not cheat, true else false
+	 * 
 	 * @param opponentMove the opponent's previous move
 	 */
 	@Override
@@ -41,5 +31,10 @@ public class Grudger extends Strategy {
 	public void clearStrategy() {
 		super.clearStrategy();
 		opponentCheated = false;
+	}
+
+	@Override
+	public boolean makeMove() {
+		return !opponentCheated;
 	}
 }

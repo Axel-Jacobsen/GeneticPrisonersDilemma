@@ -5,8 +5,8 @@ public class TitForTatTat extends Strategy {
 	/**
 	 * Strategy from the great Evolution of Trust (https://ncase.me/trust/)
 	 *
-	 * This strategy (Tit-For-TatTat) will defect if the previous two moves
-	 * of the opponent were defections.
+	 * This strategy (Tit-For-TatTat) will defect if the previous two moves of the
+	 * opponent were defections.
 	 */
 
 	public TitForTatTat() {
@@ -18,12 +18,8 @@ public class TitForTatTat extends Strategy {
 		if (opponentMoveHistory.size() == 0 || opponentMoveHistory.size() == 1) {
 			return true;
 		}
-		return opponentMoveHistory.get(opponentMoveHistory.size() - 1) &&
-				opponentMoveHistory.get(opponentMoveHistory.size() - 2);
+		return opponentMoveHistory.get(opponentMoveHistory.size() - 1)
+				&& opponentMoveHistory.get(opponentMoveHistory.size() - 2);
 	}
 
-	@Override
-	public String getStrategyName() {
-		return "TitForTatTat";
-	}
 }
