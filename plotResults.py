@@ -35,7 +35,10 @@ def gather_data():
 def update(i):
     global xs
     global ys
+    xbar = reduce((lambda a, b: a + b), map(lambda x: float(x), xs[i])) / len(xs[i])
+    ybar = reduce((lambda a, b: a + b), map(lambda y: float(y), ys[i])) / len(ys[i])
     ax.scatter(xs[i], ys[i], s=1)
+    ax.scatter(xbar, ybar, color='red')
 
 if __name__ == '__main__':
 
