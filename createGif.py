@@ -53,11 +53,11 @@ if __name__ == '__main__':
     plt.xlabel('Weights')
     plt.ylabel('Tournament Scores')
     ax.set_yticklabels([])
-    # ax.set_xticklabels([])
+    ax.set_xticklabels([])
 
     plt.xlim(0, 1)
     print 'Number of points:', len(ys)
     anim = FuncAnimation(fig, update, frames=np.arange(
-        0, len(ys)), interval=100, repeat_delay=0)
+        0, len(ys)), interval=20, repeat_delay=0)
     anim.save('linen.gif', dpi=120, writer='imagemagick')
     print('doneeroo: output file is linen.gif')
