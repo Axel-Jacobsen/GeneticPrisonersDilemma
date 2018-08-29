@@ -2,11 +2,15 @@
 
 ![Genetic Algorithm running for a basic prisoner's dilemma](long_always_defect.gif)
 
-_Genetic algorithm running for a basic Prisoner's Dilemma. This shows the initial population narrowing to their optimum of always defecting, as well as the tournament scores of the population decreasing. This illustrates the reason for the name "Prisoner's Dilemma" - the Nash Equilibrium of the system is to always defect, and therefore score less points than if the system were to cooperate._
+_GeneticOneMove strategy: Genetic algorithm running for a basic Prisoner's Dilemma. This shows the initial population narrowing to their optimum of always defecting, as well as the tournament scores of the population decreasing. This illustrates the reason for the name "Prisoner's Dilemma" - the Nash Equilibrium of the system is to always defect, and therefore score less points than if the system were to cooperate._
 
 ![Genetic Algorithm running on more difficult prisoner's dilema](evolution_ttt_centroids.gif)
 
-_Genetic algorithm running for a more challenging Prisoner's Dilemma. Each strategy is evolving the probability that it will cooperate or defect, depending on it's opponent's previous move. It can be seen here that a tit-for-tat strategy evolves to be most successful; i.e. each strategy copies it's opponent's previous move. This is a friendly strategy that punishes opponents when they defect, yet forgives them when they cooperate._
+_GeneticMemory strategy: Genetic algorithm running for a more challenging Prisoner's Dilemma. Each strategy is evolving the probability that it will cooperate or defect, depending on it's opponent's previous move. It can be seen here that a tit-for-tat strategy evolves to be most successful; i.e. each strategy copies it's opponent's previous move. This is a friendly strategy that punishes opponents when they defect, yet forgives them when they cooperate._
+
+![GeneticMemory strategy](mem_to_defect.gif)
+
+_* interestingly enough, when the inital population's maximum initial weight is ~0.54 with a population size of 280, the population tends to a defecting strategy._
 
 ## Why
 
