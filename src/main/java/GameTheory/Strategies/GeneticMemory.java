@@ -27,7 +27,7 @@ public class GeneticMemory extends GeneticStrategy {
 	@Override
 	public GeneticMemory mutateNew() {
 		boolean pm = generator.nextDouble() > 0.5;
-		double val = generator.nextDouble() * 0.001;
+		double val = generator.nextDouble() * 0.008;
 		double w = pm && (weight + val < 1) ? weight + val : weight - val > 0 ? weight - val : weight;
 		return new GeneticMemory(w);
 	}

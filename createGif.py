@@ -37,6 +37,7 @@ def update(i):
                   map(lambda x: float(x), xs[i])) / len(xs[i])
     ybar = reduce((lambda a, b: a + b),
                   map(lambda y: float(y), ys[i])) / len(ys[i])
+    print(xbar)
     ax.scatter(xs[i], ys[i], s=1)
     ax.scatter(xbar, ybar, color='blue')
 
