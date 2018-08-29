@@ -1,8 +1,13 @@
 # Genetic Prisoner's Dilemma
 
-![Genetic Algorithm running for a basic prisoner's dilemma](descent.gif)
+![Genetic Algorithm running for a basic prisoner's dilemma](long_always_defect.gif)
 
-_Genetic algorithm running for a basic Prisoner's Dilemma. This shows the initial population narrowing to their optimum._
+
+_Genetic algorithm running for a basic Prisoner's Dilemma. This shows the initial population narrowing to their optimum of always defecting, as well as the tournament scores of the population decreasing. This illustrates the reason for the name "Prisoner's Dilemma" - the Nash Equilibrium of the system is to always defect, and therefore score less points than if the system were to cooperate._
+
+![Genetic Algorithm running on more difficult prisoner's dilema](evolution_ttt_centroids.gif)
+
+_Genetic algorithm running for a more challenging Prisoner's Dilemma. Each strategy is evolving the probability that it will cooperate or defect, depending on it's opponent's previous move. It can be seen here that a tit-for-tat strategy evolves to be most successful; i.e. each strategy copies it's opponent's previous move. This is a friendly strategy that punishes opponents when they defect, yet forgives them when they cooperate._
 
 ## Why?
 
@@ -27,5 +32,4 @@ The tricky thing with implementing a genetic strategy here is the lack of contin
 
 The implementation that I chose was to assign the genetic strategies a 'weight' between 0 and 1. When it was time to make a move, the strategy generates a random number between 0 and 1. If the number is less than the strategy's weight, the strategy cooperates. Else, it defects.
 
-This gives a natural 'genetic' side of the genetic algorithm. By modifying the weight, the strategy tends towards defecting or cooperating (the results below shows that lower weights which tend to defect perform better than higher weights). 
-
+This gives a natural 'genetic' side of the genetic algorithm. By modifying the weight, the strategy tends towards defecting or cooperating (the results below shows that lower weights which tend to defect perform better than higher weights).

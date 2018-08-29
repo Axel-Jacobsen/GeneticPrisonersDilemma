@@ -34,3 +34,6 @@ src/test/resources/
 gradlew*
 /geneticRes.txt
 /staticRes.txt
+
+# other stuff
+.vscode/

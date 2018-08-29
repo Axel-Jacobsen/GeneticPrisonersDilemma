@@ -27,7 +27,9 @@ public abstract class Strategy {
 	 *
 	 * @return name of strategy
 	 */
-	public abstract String getStrategyName();
+	public String getStrategyName() {
+		return this.getClass().getSimpleName();
+	}
 
 	/**
 	 * Add the opponent's previous move to this strategy's
