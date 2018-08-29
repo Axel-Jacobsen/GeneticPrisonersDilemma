@@ -142,12 +142,12 @@ public class TournamentTest {
 	public void testMemoryGenetics() throws IOException {
 
 		List<GeneticStrategy> strategies = new ArrayList<>();
-		for (double i = 0; i < .6; i += 0.005) {
+		for (double i = 0; i < 0.58; i += 0.002) {
 			strategies.add(new GeneticMemory(i));
 		}
 
 		GeneticTournament t = new GeneticTournament(strategies);
 
-		t.executeGeneticTournamentRounds(450);
+		t.executeGeneticTournamentRounds(300);
 	}
 }
