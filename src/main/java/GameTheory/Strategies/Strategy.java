@@ -68,6 +68,10 @@ public abstract class Strategy {
 		this.outcomes.add(outcome);
 	}
 
+	/**
+	 * Returns an unmodifiable list of the outcomes of
+	 * this strategy's battles
+	 */
 	public List<Integer> getOutcomes() {
 		return Collections.unmodifiableList(outcomes);
 	}

@@ -33,7 +33,7 @@ _strategy does not look at the opponents moves_
 
 The tricky thing with implementing a genetic strategy here is the lack of continuity of the output of the strategies; i.e., when each strategy makes a move, it is either cooperate or defect.
 
-The implementation that I chose was to assign the genetic strategies a `weight` between 0 and 1. When it is time to make a move, the strategy generates a random number between 0 and 1. If the number is less than the strategy's weight, the strategy cooperates. Else, it defects.
+The implementation that I chose was to assign the genetic strategies a `weight` between 0 and 1. When it is time to make a move, the strategy generates a random number between 0 and 1. If the number is less than the strategy's weight, the strategy cooperates. Else, it defects. See this [here, in the method `makeMove()`](https://github.com/Axel-Jacobsen/GeneticPrisonersDilemma/blob/master/src/main/java/GameTheory/Strategies/GeneticOneMove.java).
 
 This gives a natural 'genetic' side of the genetic algorithm. By modifying the weight, the strategy tends towards defecting or cooperating (the results below shows that lower weights which tend to defect perform better than higher weights).
 
@@ -43,6 +43,6 @@ _strategy looks at the opponents previous move_
 
 Similar to the Constant Decision Strategy, the tricky thing is getting some sort of continuity of the output.
 
-Also similar to the Constant Decision Strategy, this strategy has a `weight` between 0 and 1. When it is time to make a move, the strategy generates a random number between 0 and 1. The strategy "ands" the previous move of the opponent and weather the random number is less than the weight. That is, the strategy returns `opponent_previous_move && random_number < weight`. If this is true, the strategy cooperates, and if it is false, the strategy defects.
+Also similar to the Constant Decision Strategy, this strategy has a `weight` between 0 and 1. When it is time to make a move, the strategy generates a random number between 0 and 1. The strategy "ands" the previous move of the opponent and weather the random number is less than the weight. That is, the strategy returns `opponent_previous_move && random_number < weight`. If this is true, the strategy cooperates, and if it is false, the strategy defects. See this [here, in the method `makeMove()`](https://github.com/Axel-Jacobsen/GeneticPrisonersDilemma/blob/master/src/main/java/GameTheory/Strategies/GeneticMemory.java).
 
 When `weight` is close to 1, the strategy copies the opponents previous move. when `weight` is near zero, the strategy returns false, or it tends to defect.

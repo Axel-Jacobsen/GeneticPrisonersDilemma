@@ -93,7 +93,7 @@ public class GeneticTournament {
 		HashMap<GeneticStrategy, Integer> tournamentPoints = new HashMap<>();
 		Object[] strategies = this.points.keySet().toArray();
 
-		for (int i = 0; i < this.points.keySet().size(); i++) {
+		for (int i = 0; i < strategies.length; i++) {
 			for (int j = i + 1; j < strategies.length; j++) {
 
 				Game g = new Game((GeneticStrategy) strategies[i], (GeneticStrategy) strategies[j]);

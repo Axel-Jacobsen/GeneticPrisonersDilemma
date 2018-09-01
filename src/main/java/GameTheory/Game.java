@@ -68,7 +68,7 @@ class Game {
 	 * @param s2 second strategy
 	 * @return A tuple of moves of s1 and s2
 	 */
-	private List<Boolean> battle(Strategy s1, Strategy s2) {
+	private void battle(Strategy s1, Strategy s2) {
 
 		// Make your moves
 		boolean s1Move = s1.makeMove();
@@ -98,9 +98,5 @@ class Game {
 			s1.addOutcome(bothDefect);
 			s2.addOutcome(bothDefect);
 		}
-
-		return new ArrayList<>(
-				Arrays.asList(s1Move, s2Move)
-		);
 	}
 }
