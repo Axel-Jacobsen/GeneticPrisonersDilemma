@@ -102,17 +102,17 @@ public class TournamentTest {
 
 		GeneticTournament t = new GeneticTournament(strategies);
 
-		HashMap<GeneticStrategy, Integer> finals = t.executeGeneticTournamentRounds(1000);
-		ArrayList<Map.Entry<GeneticStrategy, Integer>> res = t.sortEntries(finals.entrySet());
+		HashMap<GeneticStrategy, Integer> finals = t.executeGeneticTournamentRounds(100);
+		// ArrayList<Map.Entry<GeneticStrategy, Integer>> res = t.sortEntries(finals.entrySet());
 
-		FileWriter fileWriter = new FileWriter("geneticRes.txt");
-		PrintWriter printWriter = new PrintWriter(fileWriter);
+		// FileWriter fileWriter = new FileWriter("geneticRes.txt");
+		// PrintWriter printWriter = new PrintWriter(fileWriter);
 
-		res.forEach(s -> {
-			printWriter.printf("%f %d\n", s.getKey().getWeight(), s.getValue());
-		});
+		// res.forEach(s -> {
+		// 	printWriter.printf("%f %d\n", s.getKey().getWeight(), s.getValue());
+		// });
 
-		printWriter.close();
+		// printWriter.close();
 	}
 
 	@Test
@@ -124,7 +124,7 @@ public class TournamentTest {
 		}
 		Tournament t = new Tournament(strategies);
 
-		HashMap<Strategy, Integer> finals = t.executeTournamentRounds(1);
+		HashMap<Strategy, Integer> finals = t.executeTournamentRounds(100);
 		ArrayList<Map.Entry<Strategy, Integer>> res = t.sortEntries(finals.entrySet());
 
 		FileWriter fileWriter = new FileWriter("staticRes.txt");
