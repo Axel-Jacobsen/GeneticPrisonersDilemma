@@ -37,3 +37,4 @@ gradlew*
 
 # other stuff
 .vscode/
+*.icloud
