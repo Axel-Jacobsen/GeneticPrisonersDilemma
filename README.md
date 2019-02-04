@@ -1,5 +1,3 @@
-# Genetic Prisoner's Dilemma
-
 ![Genetic Algorithm running for a basic prisoner's dilemma](gifs/small_long_always_defect.gif)
 
 _GeneticOneMove strategy: Genetic algorithm running for a basic Prisoner's Dilemma. This shows the initial population narrowing to their optimum of always defecting, as well as the tournament scores of the population decreasing. This illustrates the reason for the name "Prisoner's Dilemma" - the Nash Equilibrium of the system is to always defect, and therefore score less points than if the system were to cooperate._
